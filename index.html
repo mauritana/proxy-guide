@@ -69,7 +69,8 @@
       background-clip: text;
     }
 
-    .accordion-root { display: flex; flex-direction: column; gap: 10px; }
+    .accordion-root { display: block; }
+    .accordion-root > details { display: block; margin-bottom: 12px; }
 
     details {
       border: 1px solid var(--border);
@@ -77,7 +78,7 @@
       background: var(--surface);
       transition: box-shadow 0.25s;
     }
-    details[open] { box-shadow: 0 0 0 1px rgba(124,92,252,0.27), 0 8px 32px rgba(0,0,0,0.3); }
+    details[open] { box-shadow: 0 0 0 1px rgba(124,92,252,0.27), 0 8px 32px rgba(0,0,0,0.3); margin-bottom: 2px; }
 
     summary {
       display: flex;
@@ -127,7 +128,7 @@
 
     .inner {
       padding: 8px 14px 14px;
-      display: flex; flex-direction: column; gap: 8px;
+      display: flex; flex-direction: column; gap: 10px;
     }
 
     details details { background: var(--surface2); border-color: var(--border2); }
@@ -889,7 +890,7 @@ SOCKS5: 154.218.26.194:64483</i></span></p><span class="img-wrap align-center"><
     <!-- ═══════════ IOS ═══════════ -->
     <details>
       <summary>
-        <span class="icon icon-ios">🍎</span>iOS
+        <span class="icon icon-ios">🍎</span>iOS, MacOS
         <span class="arrow"><svg viewBox="0 0 12 12"><polyline points="4,2 9,6 4,10"></polyline></svg></span>
       </summary>
       <div class="inner">
@@ -942,7 +943,7 @@ SOCKS5: 154.218.26.194:64483</i></span></p><span class="img-wrap align-center"><
         </details>
 
         <details>
-          <summary><span class="icon icon-app">⚡</span>Happ<span class="arrow"><svg viewBox="0 0 12 12"><polyline points="4,2 9,6 4,10"></polyline></svg></span></summary>
+          <summary><span class="icon icon-app">⚡</span>Happ (iOS/MacOS)<span class="arrow"><svg viewBox="0 0 12 12"><polyline points="4,2 9,6 4,10"></polyline></svg></span></summary>
           <div class="content-area">
         <div class="editor-toolbar">
           <div class="toolbar-row">
@@ -992,7 +993,7 @@ SOCKS5: 154.218.26.194:64483</i></span></p><span class="img-wrap align-center"><
     <!-- ═══════════ WINDOWS 10/11 ═══════════ -->
     <details>
       <summary>
-        <span class="icon icon-win"><svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:16px;height:16px"><rect x="2" y="3" width="16" height="11" rx="1.5" stroke="#a090f0" stroke-width="1.6"></rect><line x1="6.5" y1="14" x2="6" y2="17" stroke="#a090f0" stroke-width="1.4" stroke-linecap="round"></line><line x1="13.5" y1="14" x2="14" y2="17" stroke="#a090f0" stroke-width="1.4" stroke-linecap="round"></line><line x1="5" y1="17" x2="15" y2="17" stroke="#a090f0" stroke-width="1.4" stroke-linecap="round"></line><line x1="2" y1="11" x2="18" y2="11" stroke="#a090f0" stroke-width="1.2"></line></svg></span>Windows 10/11
+        <span class="icon icon-win"><svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:16px;height:16px"><rect x="2" y="3" width="16" height="11" rx="1.5" stroke="#a090f0" stroke-width="1.6"></rect><line x1="6.5" y1="14" x2="6" y2="17" stroke="#a090f0" stroke-width="1.4" stroke-linecap="round"></line><line x1="13.5" y1="14" x2="14" y2="17" stroke="#a090f0" stroke-width="1.4" stroke-linecap="round"></line><line x1="5" y1="17" x2="15" y2="17" stroke="#a090f0" stroke-width="1.4" stroke-linecap="round"></line><line x1="2" y1="11" x2="18" y2="11" stroke="#a090f0" stroke-width="1.2"></line></svg></span>Windows 10+, Linux
         <span class="arrow"><svg viewBox="0 0 12 12"><polyline points="4,2 9,6 4,10"></polyline></svg></span>
       </summary>
       <div class="inner">
@@ -1001,6 +1002,7 @@ SOCKS5: 154.218.26.194:64483</i></span></p><span class="img-wrap align-center"><
         <details>
           <summary><span class="icon icon-app">👑</span>Throne<span class="arrow"><svg viewBox="0 0 12 12"><polyline points="4,2 9,6 4,10"></polyline></svg></span></summary>
           <div class="inner">
+            <p style="padding: 8px 4px 12px; color: var(--muted); font-size: 13px;">Throne — это обновленный и доработанный NekoRay.</p>
 
             <details>
               <summary><span class="icon icon-app">💿</span>Установка<span class="arrow"><svg viewBox="0 0 12 12"><polyline points="4,2 9,6 4,10"></polyline></svg></span></summary>
@@ -1039,7 +1041,7 @@ SOCKS5: 154.218.26.194:64483</i></span></p><span class="img-wrap align-center"><
             <input class="file-input" type="file" accept="image/*,video/mp4,video/webm,video/ogg" multiple="" onchange="appendMedia(event,this)">
           </div>
         </div>
-        <div class="editable" data-placeholder="Нажмите «Редактировать» внизу → введите текст…" contenteditable="false"><b>Throne</b> – это обновленный и доработанный NekoRay<div><b><br></b><div>Через Throne работают голосовые звонки в Discord, если вы им пользуетесь.</div><div>Главное включить<b> «режим TUN»
+        <div class="editable" data-placeholder="Нажмите «Редактировать» внизу → введите текст…" contenteditable="false"><div><div>Через Throne работают голосовые звонки в Discord, если вы им пользуетесь.</div><div>Главное включить<b> «режим TUN»
 </b>Наши прокси<b> не имеют UDP трафика,</b> который нужен для звонков, но с помощью throne это возможно обеспечить.</div><div><br></div><div><b>1</b>. Скачайте актуальную версию Throne с <b>GitHub </b>для своей ОС
 <a href="https://github.com/throneproj/Throne/releases" target="_blank" rel="noopener noreferrer">https://github.com/throneproj/Throne/releases</a> (есть поддержка <b>Linux </b>и <b>MacOS</b>).
 Нажмите на <b>1.1.2</b> или версию выше, если доступно, чтобы перейти на страницу установки</div><div><span class="border-block bb-left">Скачать (для Windows файл заканчивается на windows64-installer.exe):
@@ -1261,6 +1263,14 @@ SOCKS5: 154.218.26.194:64483</i></span></p><span class="img-wrap align-center"><
 
 <script>
 'use strict';
+
+// Force all details closed on every page load (override browser session restore)
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('details').forEach(function(d) {
+    d.removeAttribute('open');
+  });
+});
+
 
 var editMode = false;
 var _savedRange = null;
