@@ -2050,7 +2050,7 @@
   </div>
   <div class="topbar-search" role="search">
     <svg class="topbar-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="16.5" y1="16.5" x2="21" y2="21"></line></svg>
-    <input id="instruction-search" type="search" autocomplete="off" placeholder="Поиск инструкций" aria-label="Поиск инструкций" aria-expanded="false" aria-controls="instruction-search-menu">
+    <input id="instruction-search" type="search" autocomplete="off" placeholder="Поиск" aria-label="Поиск инструкций" aria-expanded="false" aria-controls="instruction-search-menu">
     <button class="search-close" type="button" aria-label="Свернуть поиск" title="Свернуть поиск">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="6" y1="6" x2="18" y2="18"></line><line x1="18" y1="6" x2="6" y2="18"></line></svg>
     </button>
@@ -2590,6 +2590,19 @@ SOCKS5: 154.218.26.194:64483</i></span></p><span class="img-wrap align-center"><
   const searchMenu = document.getElementById('instruction-search-menu');
   const searchCloseBtn = document.querySelector('.search-close');
   const root = document.querySelector('.accordion-root');
+  const searchPlaceholderQuery = window.matchMedia ? window.matchMedia('(max-width: 760px)') : null;
+  function syncSearchPlaceholder() {
+    if (!searchInput) return;
+    searchInput.placeholder = searchPlaceholderQuery && searchPlaceholderQuery.matches ? 'Поиск' : 'Поиск инструкций';
+  }
+  syncSearchPlaceholder();
+  if (searchPlaceholderQuery) {
+    if (typeof searchPlaceholderQuery.addEventListener === 'function') {
+      searchPlaceholderQuery.addEventListener('change', syncSearchPlaceholder);
+    } else if (typeof searchPlaceholderQuery.addListener === 'function') {
+      searchPlaceholderQuery.addListener(syncSearchPlaceholder);
+    }
+  }
   const baseInstructionSearchItems = [
     { label: 'FAQ', sub: 'Ответы на частые вопросы', icon: '?', sectionId: 'faq', targetId: 'faq', keywords: 'вопросы faq помощь' },
     { label: 'Android', sub: 'Все приложения для Android', icon: 'A', sectionId: 'android', targetId: 'android', keywords: 'андроид android приложения' },
