@@ -1813,13 +1813,6 @@
         font-size: 16px;
         line-height: 1;
       }
-      .topbar-search.is-open,
-      .topbar-search:focus-within {
-        order: 3;
-        width: 100%;
-        flex-basis: 100%;
-        margin-left: 0;
-      }
       .search-close {
         display: inline-flex;
         right: 5px;
@@ -2814,11 +2807,14 @@ SOCKS5: 154.218.26.194:64483</i></span></p><span class="img-wrap align-center"><
   }
 
   if (searchBox && searchInput && searchMenu) {
-    searchInput.addEventListener('pointerenter', hideCatCursor);
-    searchInput.addEventListener('focus', () => {
+    const openSearchMenu = () => {
       hideCatCursor();
-      renderSearchMenu();
-    });
+      if (!searchBox.classList.contains('is-open')) renderSearchMenu();
+    };
+    searchInput.addEventListener('pointerenter', hideCatCursor);
+    searchInput.addEventListener('pointerdown', openSearchMenu, { passive: true });
+    searchInput.addEventListener('touchstart', openSearchMenu, { passive: true });
+    searchInput.addEventListener('focus', openSearchMenu);
     searchInput.addEventListener('input', renderSearchMenu);
     searchInput.addEventListener('keydown', e => {
       if (e.key === 'Escape') {
