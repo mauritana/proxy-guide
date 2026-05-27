@@ -2793,11 +2793,23 @@ SOCKS5: 154.218.26.194:64483</i></span></p><span class="img-wrap align-center"><
     setSearchOpen(true);
   }
 
+  function resetMobileViewportZoom() {
+    if (!window.matchMedia('(max-width: 760px), (pointer: coarse)').matches) return;
+    const viewport = document.querySelector('meta[name="viewport"]');
+    if (!viewport) return;
+    const originalContent = viewport.getAttribute('content') || 'width=device-width, initial-scale=1.0';
+    viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+    window.setTimeout(() => {
+      viewport.setAttribute('content', originalContent);
+    }, 500);
+  }
+
   function chooseSearchResult(item) {
     if (!item || !searchInput) return;
     searchInput.value = item.label;
     setSearchOpen(false);
     searchInput.blur();
+    resetMobileViewportZoom();
     openInstructionTarget(item.sectionId, item.targetId);
   }
 
