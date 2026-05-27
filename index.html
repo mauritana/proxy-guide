@@ -268,7 +268,17 @@
       font-weight: 600;
       backdrop-filter: blur(18px) saturate(145%);
       -webkit-backdrop-filter: blur(18px) saturate(145%);
+      appearance: none;
+      -webkit-appearance: none;
       transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+    }
+    .topbar-search input::-webkit-search-decoration,
+    .topbar-search input::-webkit-search-cancel-button,
+    .topbar-search input::-webkit-search-results-button,
+    .topbar-search input::-webkit-search-results-decoration {
+      display: none;
+      -webkit-appearance: none;
+      appearance: none;
     }
     .topbar-search input::placeholder { color: rgba(148,163,184,0.78); }
     .topbar-search input:focus {
@@ -2726,8 +2736,13 @@ SOCKS5: 154.218.26.194:64483</i></span></p><span class="img-wrap align-center"><
     searchInput.setAttribute('aria-expanded', open ? 'true' : 'false');
   }
 
-  function closeSearch() {
+  function closeSearch(clearValue = false) {
     if (!searchInput) return;
+    if (clearValue) {
+      searchInput.value = '';
+      searchResults = [];
+      if (searchMenu) searchMenu.innerHTML = '';
+    }
     setSearchOpen(false);
     searchInput.blur();
     focusedSearchIndex = -1;
@@ -2847,7 +2862,7 @@ SOCKS5: 154.218.26.194:64483</i></span></p><span class="img-wrap align-center"><
       searchCloseBtn.addEventListener('click', e => {
         e.preventDefault();
         e.stopPropagation();
-        closeSearch();
+        closeSearch(true);
       });
     }
     document.addEventListener('click', e => {
