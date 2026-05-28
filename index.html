@@ -252,7 +252,7 @@
       z-index: 1;
       width: 100%;
       height: 40px;
-      padding: 0 15px 0 38px;
+      padding: 0 46px 0 38px;
       border: 1px solid rgba(255,255,255,0.085);
       border-radius: 999px;
       outline: none;
@@ -297,7 +297,7 @@
       z-index: 2;
       width: 28px;
       height: 28px;
-      display: none;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
       border-radius: 50%;
@@ -316,6 +316,11 @@
     .search-close:hover {
       border-color: rgba(165,180,252,0.28);
       background: rgba(129,140,248,0.13);
+    }
+    .topbar-search.is-open .search-close,
+    .topbar-search:focus-within .search-close {
+      opacity: 1;
+      pointer-events: auto;
     }
     .search-menu {
       position: absolute;
